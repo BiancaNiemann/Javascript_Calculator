@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Buttons from '../Components/Buttons'
 
 function App() {
+
   const [digit, setDigit] = useState('')
   const [total, setTotal] = useState('')
   const [operator, setOperator] = useState('')
@@ -25,13 +27,17 @@ function App() {
       setIsZero(false)
     }
 
-    
-    if(isTotalled && isUpdated){
+
+    if (isTotalled && isUpdated) {
       setTotal(fullTotal)
       setIsTotalled(false)
       setStart(true)
     }
-//3 + 5 * 6 - 2 / 4 should produce 32.5 or 11.5 
+
+    if (isTotalled && !isUpdated) {
+      setTotal('')
+    }
+    //3 + 5 * 6 - 2 / 4 should produce 32.5 or 11.5 
   }, [digit, isTotalled, isUpdated])
 
   function insertOperator(e) {
@@ -56,7 +62,7 @@ function App() {
     } else if (e === 0 && isZero === true) {
       selectedDigit = ''
     }
-   
+
     setIsUpdated(false)
 
     if (operator.length === 1) {
@@ -78,14 +84,14 @@ function App() {
       setFullTotal('')
       setIsTotalled(false)
     }
-    
+
   }
 
   function addSum(e) {
     setIsTotalled(true)
     setTotal(prevTotal => prevTotal + e)
     setFullTotal(eval(total + e))
-   
+
     setDigit('')
     setOperator('')
     setStart(false)
@@ -102,30 +108,33 @@ function App() {
   }
 
   return (
-    <>
-      <button id="equals" onClick={() => addSum(digit)}>=</button>
-      <button id="zero" onClick={() => insertDigit(0)}>0</button>
-      <button id="one" onClick={() => insertDigit(1)}>1</button>
-      <button id="two" onClick={() => insertDigit(2)}>2</button>
-      <button id="three" onClick={() => insertDigit(3)}>3</button>
-      <button id="four" onClick={() => insertDigit(4)}>4</button>
-      <button id="five" onClick={() => insertDigit(5)}>5</button>
-      <button id="six" onClick={() => insertDigit(6)}>6</button>
-      <button id="seven" onClick={() => insertDigit(7)}>7</button>
-      <button id="eight" onClick={() => insertDigit(8)}>8</button>
-      <button id="nine" onClick={() => insertDigit(9)}>9</button>
-      <button id="add" onClick={() => insertOperator('+')}>+</button>
-      <button id="subtract" onClick={() => insertOperator('-')}>-</button>
-      <button id="multiply" onClick={() => insertOperator('*')}>x</button>
-      <button id="divide" onClick={() => insertOperator('/')}>/</button>
-      <button id="decimal" onClick={() => insertDigit('.')}>.</button>
-      <button id="clear" onClick={() => clearScreen()}>AC</button>
-      {!isTotalled && !start && <input id="display" value='0' onChange={e => checkZero(e)} />}
-      {!isTotalled && start && <input id="display" value={digit} onChange={e => checkZero(e)} />}
-      {isTotalled && <input id="display" value={fullTotal} onChange={e => checkZero(e)} />}
-      <div>{total}</div>
-    </>
+    <div className="container">
+
+      <div className="input-total-container">
+        <div className="total-box">{total}</div>
+
+        {!isTotalled && !start &&
+          <input id="display" value='0' onChange={e => checkZero(e)} />
+        }
+        {!isTotalled && start &&
+          <input id="display" value={digit} onChange={e => checkZero(e)} />
+        }
+        {isTotalled &&
+          <input id="display" value={fullTotal} onChange={e => checkZero(e)} />
+        }
+      </div>
+
+      <Buttons
+        insertDigit={insertDigit}
+        insertOperator={insertOperator}
+        addSum={() => addSum(digit)}
+        digit={digit}
+        clearScreen={clearScreen}
+      />
+
+    </div>
   )
 }
 
 export default App
+
