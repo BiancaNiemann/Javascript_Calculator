@@ -18,17 +18,19 @@ This is the fourth challenge on the FreeCodeCamp Front End Development Libraries
 
 Users should be able to:
 
-- Click a button and the machine will play the associated sound
-- Enter the key from the keyboard and it plays the associated sound
-- When a button is selected or key clicked the name of the sound shows on screen
+- Enter in random sums as long as needed
+- Clear the numbers and operators entered and start at nil again
+- Total up the sum
+-Either start a new sum or keep adding on to original Total
 
 ### Screenshot
 
-![](./Drum-Machine-img.JPG)
+![](./Calculator_App.JPG)
 
 ### Links
 
-- Codepen Solution: [https://codepen.io/BiancaisLearning/pen/mdzqoZM](https://github.com/BiancaNiemann/Quote_Machine)
+- Solution: [https://github.com/BiancaNiemann/Javascript_Calculator)https://github.com/BiancaNiemann/Javascript_Calculator
+-Live Site: [https://javascript-calculator-tau.vercel.app/] https://javascript-calculator-tau.vercel.app/
 
 ## My process
 
